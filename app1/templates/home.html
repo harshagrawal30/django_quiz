@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" 
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">H.A Classes</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="/">Home </a>
+            </li>
+
+            {%if user.is_authenticated %}
+            <li class="nav-item">
+              Hello,{{user.username}}
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="account2/logout">logout</a>
+            </li>
+            {%else%}
+            <li class="nav-item">
+              <a class="nav-link" href="account2/login">login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="account2/register">register</a>
+            </li>
+            {%endif%}
+            
+          </ul>
+        </div>
+      </nav>
+
+      {%if user.is_authenticated%}
+  
+    
+     {%for user1 in classnum%}
+     {%if user1.username1 == user.username%}
+     {{usser}}
+     <h4>Click on below button to continue</h4>
+     {%if user1.classnum == 5%}
+      <a href="app1/C5_que_page"><button type="button" class="btn btn-primary">5TH</button></a>
+     {%elif user1.classnum == 6%}
+      <a href="app1/C6_que_page"><button type="button" class="btn btn-secondary">6TH</button></a>
+      {%elif user1.classnum == 7%}
+      <a href="app1/C7_que_page"><button type="button" class="btn btn-success">7TH</button></a>
+      {%elif user1.classnum == 8 %}
+      <a href="app1/C8_que_page"><button type="button" class="btn btn-danger">8TH</button></a>
+      {%elif user1.classnum == 9%}
+      <a href="app1/C9_que_page"><button type="button" class="btn btn-warning">9TH</button></a>
+      <a href="app1/C9_M_que_page"><button type="button" class="btn btn-info">9TH Maths</button></a>
+      <a href="app1/C9_S_que_page"><button type="button" class="btn btn-warning">9TH Science</button></a>
+
+      {%elif user1.classnum == 10 %}
+      <a href="app1/C10_que_page"><button type="button" class="btn btn-warning">10TH</button></a>
+      <a href="app1/C10_M_que_page"><button type="button" class="btn btn-warning">10TH Maths</button></a>
+      <a href="app1/C10_S_que_page"><button type="button" class="btn btn-warning">10TH Science</button></a>
+      
+      {%endif%}
+     {%endif%}
+     
+     {%endfor%}
+     
+      
+    {%else%}
+    {{usser}}
+    <h2>Welcome to our classes</h2>
+    <h4>Select your class below</h4>
+    <a href="app1/C5_que_page"><button type="button" class="btn btn-primary">5TH</button></a>
+      
+      <a href="app1/C6_que_page"><button type="button" class="btn btn-secondary">6TH</button></a>
+      
+      <a href="app1/C7_que_page"><button type="button" class="btn btn-success">7TH</button></a>
+     
+      <a href="app1/C8_que_page"><button type="button" class="btn btn-danger">8TH</button></a>
+    
+      <a href="app1/C9_que_page"><button type="button" class="btn btn-warning">9TH</button></a>
+    
+      <a href="app1/C10_que_page"><button type="button" class="btn btn-info">10TH</button></a>
+   
+     {%endif%}
+    <h4> Check Your Performance <a  href="app1/Result">Here</a></h4>
+</body>
+</html>

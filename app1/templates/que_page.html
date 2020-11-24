@@ -1,0 +1,107 @@
+{%extends 'base.html'%}
+{%block content%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  
+    {%if user.is_authenticated%}
+   
+    {%if not q and v == 0%}
+    <br>
+    <h4>No Questions are available right now</h4>
+    {%else%}
+   {% for question in question%}
+    {%if forloop.first%}
+   <h3>Class {{question.Class}}th</h3>
+   {%endif%}
+   {%endfor%}
+  
+   
+   
+
+  {%if u == 0 or v == 0%}
+
+
+
+   <br>
+    <h5> Click on the questions to solve </h5> 
+    {% for questions in question%}
+    {% for question in question_text2%}
+    {%if question == questions.id%}
+    Q{{forloop.counter}}. &nbsp;<a href="{{questions.id}}/">{{questions.question_text}}</a>&nbsp;<br>
+    {%endif%}
+     {%endfor%}
+     {%endfor%}
+   {%elif q == 0%}
+   <h5>Below are solved questions</h5> 
+  
+   {%for useser in usser%}
+   {% for questions in question%}
+   {%if useser.username == user.username%}
+   
+   {%if useser.question_id == questions.id%}
+   {%if useser.solved_c_n == 1%}
+   Q{{forloop.counter}}. &nbsp;{{questions.question_text}}&nbsp;solved correctly  &nbsp;(ans={{useser.correct_ans}})<br>
+   {%else%}
+   Q{{forloop.counter}}. &nbsp;{{questions.question_text}}&nbsp;solved incorrectly &nbsp;(Correct Ans={{useser.correct_ans}})<br>
+   {%endif%}
+   {%endif%}
+   {%endif%}
+   {%endfor%}
+   {%endfor%}
+   {%else%}
+   <h5> Click on the questions to solve </h5> 
+    {% for questions in question%}
+    {% for question in question_text2%}
+    {%if question == questions.id%}
+    Q{{forloop.counter}}. &nbsp;<a href="{{questions.id}}/">{{questions.question_text}}</a>&nbsp;<br>
+    {%endif%}
+     {%endfor%}
+     {%endfor%}
+   <br><br>
+
+     <h5>Below are recently solved questions</h5> 
+  
+     {%for useser in usser%}
+     {% for questions in question%}
+   
+     {%if useser.username == user.username%}
+     
+     {%if useser.question_id == questions.id%}
+     {%if useser.solved_c_n == 1%}
+     Q{{forloop.counter}}. &nbsp;{{questions.question_text}}&nbsp;solved correctly  &nbsp;(ans={{useser.correct_ans}})<br>
+     {%else%}
+     Q{{forloop.counter}}. &nbsp;{{questions.question_text}}&nbsp;solved incorrectly &nbsp;(Correct Ans={{useser.correct_ans}})<br>
+     {%endif%}
+     {%endif%}
+     {%endif%}
+     {%endfor%}
+     {%endfor%}
+    {%endif%}
+
+   <br>
+    <h4> Check Your Performance <a  href="/app1/Result">Here</a></h4>
+
+   
+    {%endif%}
+    {%else%}
+    <h4> Firstly login from <a href="account2/login">Here</a> </h4>
+    
+    {%endif%}
+    {% csrf_token %}
+
+  
+ 
+    
+      
+   
+
+</body>
+
+</html>
+{%endblock%}

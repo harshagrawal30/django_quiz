@@ -1,0 +1,36 @@
+{%extends 'base.html'%}
+{%block content%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   
+    {% csrf_token %}
+    <h3>Choose correct option</h3>
+  
+    
+        {%for ques in question%}
+        <form   name="{{ques.question_text}}" action="check" method="post"></form>
+       <b>Q.</b>&nbsp;{{ques.question_text}} <br>
+       {% for choice in ques.choice_set.all%}
+       <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+       <label for="choice{{ forloop.counter }}">{{choice.choice_text}}</label><br>
+       {%endfor%}
+       <input type="submit" value='submit'>
+    </form>
+       {%endfor%}
+<br>
+
+{%csrf_token%}
+      
+  
+  
+  </body>
+
+</html>
+{%endblock%}
+  

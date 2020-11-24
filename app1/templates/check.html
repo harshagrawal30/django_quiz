@@ -1,0 +1,28 @@
+{%extends 'base.html'%}
+{%block content%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <h4>Class {{clas}}</h4>
+   
+  {%csrf_token%}
+  <h3>{{solved}}</h3> <br>
+    <h5>Click on the button to go at question page</h5> 
+
+
+     {{question}}
+    
+  
+  <a href="/app1"><button>Click Here</button></a>
+
+  </body>
+
+</html>
+{%endblock%}
+  
+      

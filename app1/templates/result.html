@@ -1,0 +1,128 @@
+{%extends 'base.html'%}
+{%block content%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body><br>
+    {%if user.is_authenticated%}
+    {% for usr in usrname%}
+    {%if usr.username1 == user.username%}
+    
+    <h2>Class {{usr.classnum}}th</h2>
+   
+    {%endif%}
+    
+    {%endfor%}
+    
+    {%if T_solved == 0 %}
+    &nbsp; <h3> Solve at least one question to view scores</h3>
+    {%else%}
+    &nbsp;  <h2>Your Overall Performance Score {{tsp1}}%</h2>
+    <br>
+    <h4>Total {{tq}} Questions you faced</h4>
+    {%if T_C_solved == 1%}
+   <h4> Out of which You have solved "{{T_solved}}" Total number of Question out of which "{{T_C_solved}}" is correctly solved &nbsp; {{tsp}}%</h4>
+    {%else%} 
+   <h4> Out of which You have solved "{{T_solved}}" Total number of Question out of which "{{T_C_solved}}" are correctly solved &nbsp; {{tsp}}%</h4>
+    {%endif%}
+  
+<br><br>
+{%if z == 1%}
+&nbsp;<h2>Your Recently Solved Question Performance Score</h2>
+{%if C_R_solved == 1 %}
+&nbsp;<h4>You have solved "{{T_R_solved}}" Total number of Recent Question  out of which "{{C_R_solved}}" is correctly solved &nbsp;{{rsp}}%</h4>
+{%else%}
+&nbsp;<h4>You have solved "{{T_R_solved}}" Total number of Recent Question  out of which "{{C_R_solved}}" are correctly solved &nbsp;{{rsp}}%</h4>
+{%endif%}
+{%endif%}
+<br><br>
+{%for userr in usrname%}
+{%if userr.username1 == user.username%}
+&nbsp;&nbsp;<h2> Below are Total Questions Attempted by {{userr.username}}</h2>
+
+<form action="Result" method="POST">
+    {%csrf_token%}
+    <label for="subject">Filter below question by selecting Subject:</label>
+    {%if userr.classnum >= 9%}
+    <select name="subject" id="subject">
+        <option value="ALL">ALL</option>
+      <option value="maths">maths</option>
+      <option value="science">science</option>
+      <option value="chemistry">chemistry</option>
+      <option value="biology">biology</option>
+    <option value="physics">physics</option>
+      
+    </select>
+    {%else%}
+    <select name="subject" id="subject">
+        <option value="ALL">ALL</option>
+      <option value="maths">maths</option>
+      <option value="science">science</option>
+      </select>
+      {%endif%}
+    <input type="submit" name="Apply filter">
+</form>
+<table>
+    <tr>
+        
+        <th>Question Attempted</th>
+        &nbsp;
+        <th>Correct Answer</th>
+
+    </tr>
+    {%endif%}
+    {%endfor%}
+{%for usser in usr%}
+
+{%if usser.username == user.username%}
+
+
+<tr>
+    <td>{{usser.question_text}}</td>
+  
+    <td>{{usser.correct_ans}}</td>
+
+</tr>
+
+{%endif%}
+{%endfor%}
+
+{%for ques in quest%}
+{%if ques.username == user.username%}
+
+<tr>
+    <td>{{ques.question_text}}</td>
+    <td>{{ques.correct_ans}}</td>
+</tr>
+{%endif%}
+{%endfor%}
+</table>
+{%endif%}
+
+{%else%}
+<h4> Firstly login from <a href="account2/login">Here</a> </h4>
+
+{%endif%}
+</body>
+</html>
+<style>
+   
+    table{
+        width: 60%;
+        margin-left: 15%;
+        margin-bottom: 5%;
+    }
+    th{
+        border: 1px solid;
+        font-size: x-large;
+        text-align: center;}
+    td{
+      border: 1px solid;
+      text-align: center;  
+    }
+</style>
+{%endblock%}
