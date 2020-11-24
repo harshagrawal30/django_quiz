@@ -13,7 +13,7 @@ Pillow==7.2.0
 python-dateutil==2.8.1
 pytz==2020.1
 six==1.15.0
-static==1.0.2
+
 sqlparse==0.3.1
 virtualenv==20.0.31
 virtualenvwrapper-win==1.2.6
