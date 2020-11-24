@@ -79,11 +79,12 @@ WSGI_APPLICATION = 'project2.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'classque',
-        'USER':'root',
-        'PASSWORD':'root',
-        'HOST':'localhost',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'd46s08tcgvcfna',
+        'USER':'zoqpwddtxydjno',
+        'PORT':'5432',
+        'PASSWORD':'8e94fcf4a2ddfe77a65aeb9257d8ddd85424f5ca656cd70d615333c3c000b1f9',
+        'HOST':'ec2-52-203-182-92.compute-1.amazonaws.com',
         'TIME_ZONE':'Asia/Kolkata'
     }
 }
