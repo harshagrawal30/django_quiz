@@ -26,7 +26,6 @@ urlpatterns = [
     path('account3/',include('account3.urls')),
     path('account2/',include('account2.urls')),
 
-    url(r'^media/(?P<path>.*)$', serve,{'document_root':  settings.MEDIA_ROOT}), 
-    url(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}), 
+
 ]
 
